@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Planificador de Menú Semanal 🥗</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Tailwind CSS desde CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-emerald-50 via-sky-50 to-amber-50 text-slate-800">
+  <div class="max-w-6xl mx-auto px-4 py-6 md:py-10">
+    <!-- Encabezado -->
+    <header class="mb-6 md:mb-10 text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-emerald-700 drop-shadow-sm">
+        Planificador de Menú Semanal 🧑‍🍳
+      </h1>
+      <p class="mt-2 text-sm md:text-base text-slate-600">
+        Organiza tus comidas, genera ideas saludables y crea tu lista de la compra fácilmente.
+      </p>
+    </header>
+
+    <!-- Controles principales -->
+    <section class="mb-6 flex flex-col md:flex-row gap-3 md:items-center md:justify-center">
+      <button id="btnRandom"
+        class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-emerald-500 text-white text-sm md:text-base font-semibold shadow hover:bg-emerald-600 transition">
+        🎲 Sugerir menú saludable
+      </button>
+      <button id="btnClear"
+        class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-rose-500 text-white text-sm md:text-base font-semibold shadow hover:bg-rose-600 transition">
+        🧹 Limpiar tabla
+      </button>
+      <button id="btnShopping"
+        class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-amber-500 text-white text-sm md:text-base font-semibold shadow hover:bg-amber-600 transition">
+        🛒 Actualizar lista de la compra
+      </button>
+    </section>
+
+    <!-- Tabla del menú -->
+    <section
+      class="bg-white/80 backdrop-blur rounded-2xl shadow-lg border border-emerald-100 overflow-hidden mb-6">
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-xs md:text-sm">
+          <thead class="bg-emerald-600 text-white">
+            <tr>
+              <th class="px-2 py-3 md:px-4 md:py-3 text-left">🍽️ Comida / Día</th>
+              <th class="px-2 py-3 md:px-4 md:py-3 text-center">Lunes</th>
+              <th class="px-2 py-3 md:px-4 md:py-3 text-center">Martes</th>
+              <th class="px-2 py-3 md:px-4 md:py-3 text-center">Miércoles</th>
+              <th class="px-2 py-3 md:px-4 md:py-3 text-center">Jueves</th>
+              <th class="px-2 py-3 md:px-4 md:py-3 text-center">Viernes</th>
+              <th class="px-2 py-3 md:px-4 md:py-3 text-center">Sábado</th>
+              <th class="px-2 py-3 md:px-4 md:py-3 text-center">Domingo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Desayuno -->
+            <tr class="border-t border-emerald-100 bg-emerald-50/40">
+              <td class="px-2 py-2 md:px-4 md:py-3 font-semibold text-emerald-800">
+                🌅 Desayuno
+              </td>
+              <!-- 7 celdas -->
+              <script>
+                // Este script solo genera las celdas de forma compacta
+              </script>
+            </tr>
+            <!-- Comida -->
+            <tr class="border-t border-emerald-100 bg-sky-50/40">
+              <td class="px-2 py-2 md:px-4 md:py-3 font-semibold text-sky-800">
+                🌞 Comida
+              </td>
+            </tr>
+            <!-- Cena -->
+            <tr class="border-t border-emerald-100 bg-amber-50/40">
+              <td class="px-2 py-2 md:px-4 md:py-3 font-semibold text-amber-800">
+                🌙 Cena
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="px-4 py-3 text-xs md:text-sm text-slate-500 border-t border-emerald-100 bg-white/70">
+        Consejo: haz clic en cualquier celda para escribir o editar un plato. Usa emojis si quieres 😋.
+      </p>
+    </section>
+
+    <!-- Lista de la compra -->
+    <section
+      class="bg-white/80 backdrop-blur rounded-2xl shadow-lg border border-amber-100 p-4 md:p-6 mb-6">
+      <h2 class="text-lg md:text-xl font-bold text-amber-700 flex items-center gap-2 mb-2">
+        🛒 Lista de la compra
+      </h2>
+      <p class="text-xs md:text-sm text-slate-600 mb-3">
+        La lista se genera a partir de los platos de la tabla (solo para los platos conocidos del sistema).
+        Puedes editarla libremente.
+      </p>
+      <textarea id="shoppingList"
+        class="w-full min-h-[140px] md:min-h-[180px] rounded-xl border border-amber-200 bg-amber-50/60 px-3 py-2 text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400"
+        placeholder="- Ejemplo: 6 huevos
+- Avena integral
+- Verduras variadas
+- Fruta de temporada"></textarea>
+    </section>
+
+    <!-- Instrucciones de uso -->
+    <section
+      class="bg-white/80 backdrop-blur rounded-2xl shadow border border-slate-100 p-4 md:p-6 text-xs md:text-sm text-slate-700">
+      <h2 class="text-base md:text-lg font-semibold text-slate-800 mb-2">
+        📘 Cómo usar esta aplicación
+      </h2>
+      <ol class="list-decimal list-inside space-y-1">
+        <li><strong>Editar celdas:</strong> haz clic en cualquier celda de la tabla y escribe el plato que quieras
+          (por ejemplo: “Ensalada de quinoa 🥗”).</li>
+        <li><strong>Generar sugerencias:</strong> pulsa <span class="font-semibold text-emerald-700">“Sugerir menú
+              saludable”</span> para rellenar automáticamente toda la semana con platos saludables aleatorios.</li>
+        <li><strong>Limpiar todo:</strong> pulsa <span class="font-semibold text-rose-700">“Limpiar tabla”</span> para
+          vaciar todas las celdas y empezar de cero.</li>
+        <li><strong>Lista de la compra:</strong> pulsa <span class="font-semibold text-amber-700">“Actualizar lista de
+              la compra”</span> para generar una lista basada en los platos conocidos. Puedes añadir, borrar o modificar
+          lo que quieras en el cuadro de texto.</li>
+        <li><strong>Guardar tu plan:</strong> puedes guardar el archivo HTML o imprimir la página desde tu navegador
+          (Ctrl+P / Cmd+P).</li>
+        <li><strong>Cómo ejecutarla:</strong> guarda este código en un archivo llamado, por ejemplo,
+          <span class="font-mono">menu-semanal.html</span> y ábrelo haciendo doble clic. Se abrirá en tu navegador
+          predeterminado.</li>
+      </ol>
+    </section>
+  </div>
+
+  <!-- Lógica JavaScript -->
+  <script>
+    // --- Generación dinámica de celdas de la tabla ---
+    (function crearCeldas() {
+      const filas = document.querySelectorAll("tbody tr");
+      filas.forEach((fila, rowIndex) => {
+        // Saltar la primera celda (etiqueta de la fila)
+        for (let i = 0; i < 7; i++) {
+          const td = document.createElement("td");
+          td.className =
+            "px-1 py-1 md:px-2 md:py-2 border-l border-emerald-100 align-top";
+          const input = document.createElement("textarea");
+          input.className =
+            "w-full h-16 md:h-20 resize-none bg-transparent text-[11px] md:text-xs px-1 py-1 focus:outline-none focus:ring-2 focus:ring-emerald-400 rounded-md";
+          input.setAttribute("data-row", rowIndex); // 0: desayuno, 1: comida, 2: cena
+          input.setAttribute("data-col", i);        // 0-6: lunes-domingo
+          td.appendChild(input);
+          fila.appendChild(td);
+        }
+      });
+    })();
+
+    // --- Datos de platos saludables ---
+    const healthyMeals = {
+      desayuno: [
+        "Avena con fruta y semillas",
+        "Tostada integral con aguacate y tomate",
+        "Yogur natural con frutos rojos y nueces",
+        "Batido verde de espinacas, manzana y plátano",
+        "Tortilla de claras con espinacas",
+        "Porridge de avena con canela y manzana",
+        "Pan integral con hummus y pepino"
+      ],
+      comida: [
+        "Ensalada de quinoa con garbanzos y verduras",
+        "Pechuga de pollo a la plancha con verduras al vapor",
+        "Lentejas estofadas con verduras",
+        "Salmón al horno con brócoli y boniato",
+        "Arroz integral con tofu y verduras salteadas",
+        "Pasta integral con salsa de tomate natural y albahaca",
+        "Buddha bowl de legumbres, verduras y semillas"
+      ],
+      cena: [
+        "Crema de calabaza con semillas de calabaza",
+        "Ensalada de garbanzos, tomate y pepino",
+        "Tortilla francesa con ensalada verde",
+        "Pescado blanco a la plancha con ensalada",
+        "Salteado de verduras con tofu",
+        "Sopa de verduras casera",
+        "Ensalada de espinacas, manzana y nueces"
+      ]
+    };
+
+    // Mapeo simple de platos conocidos -> ingredientes
+    const ingredientsMap = {
+      "Avena con fruta y semillas": ["Avena", "Fruta variada", "Semillas (chía, lino, etc.)"],
+      "Tostada integral con aguacate y tomate": ["Pan integral", "Aguacate", "Tomate"],
+      "Yogur natural con frutos rojos y nueces": ["Yogur natural", "Frutos rojos", "Nueces"],
+      "Batido verde de espinacas, manzana y plátano": ["Espinacas", "Manzana", "Plátano", "Agua o bebida vegetal"],
+      "Tortilla de claras con espinacas": ["Claras de huevo", "Espinacas", "Aceite de oliva"],
+      "Porridge de avena con canela y manzana": ["Avena", "Leche o bebida vegetal", "Manzana", "Canela"],
+      "Pan integral con hummus y pepino": ["Pan integral", "Hummus", "Pepino"],
+
+      "Ensalada de quinoa con garbanzos y verduras": ["Quinoa", "Garbanzos", "Verduras variadas", "Aceite de oliva"],
+      "Pechuga de pollo a la plancha con verduras al vapor": ["Pechuga de pollo", "Verduras variadas"],
+      "Lentejas estofadas con verduras": ["Lentejas", "Verduras variadas", "Caldo o agua"],
+      "Salmón al horno con brócoli y boniato": ["Salmón", "Brócoli", "Boniato"],
+      "Arroz integral con tofu y verduras salteadas": ["Arroz integral", "Tofu", "Verduras variadas", "Salsa de soja"],
+      "Pasta integral con salsa de tomate natural y albahaca": ["Pasta integral", "Tomate triturado", "Albahaca"],
+      "Buddha bowl de legumbres, verduras y semillas": ["Legumbres (garbanzos, lentejas)", "Verduras variadas", "Semillas"],
+
+      "Crema de calabaza con semillas de calabaza": ["Calabaza", "Cebolla", "Caldo", "Semillas de calabaza"],
+      "Ensalada de garbanzos, tomate y pepino": ["Garbanzos", "Tomate", "Pepino", "Aceite de oliva"],
+      "Tortilla francesa con ensalada verde": ["Huevos", "Lechuga", "Tomate"],
+      "Pescado blanco a la plancha con ensalada": ["Pescado blanco", "Lechuga", "Tomate", "Cebolla"],
+      "Salteado de verduras con tofu": ["Verduras variadas", "Tofu", "Salsa de soja"],
+      "Sopa de verduras casera": ["Verduras variadas", "Caldo"],
+      "Ensalada de espinacas, manzana y nueces": ["Espinacas", "Manzana", "Nueces"]
+    };
+
+    // --- Utilidades ---
+    function getAllCells() {
+      return Array.from(document.querySelectorAll("tbody textarea"));
+    }
+
+    function getRowName(rowIndex) {
+      if (rowIndex === 0) return "desayuno";
+      if (rowIndex === 1) return "comida";
+      return "cena";
+    }
+
+    // --- Rellenar con sugerencias aleatorias ---
+    function fillRandomMenu() {
+      const cells = getAllCells();
+      cells.forEach(cell => {
+        const rowIndex = parseInt(cell.getAttribute("data-row"), 10);
+        const rowName = getRowName(rowIndex);
+        const options = healthyMeals[rowName];
+        const randomMeal = options[Math.floor(Math.random() * options.length)];
+        cell.value = randomMeal;
+      });
+    }
+
+    // --- Limpiar tabla ---
+    function clearTable() {
+      getAllCells().forEach(cell => (cell.value = ""));
+    }
+
+    // --- Generar lista de la compra ---
+    function generateShoppingList() {
+      const cells = getAllCells();
+      const ingredientsSet = new Set();
+      const unknownMeals = [];
+
+      cells.forEach(cell => {
+        const meal = cell.value.trim();
+        if (!meal) return;
+        if (ingredientsMap[meal]) {
+          ingredientsMap[meal].forEach(ing => ingredientsSet.add(ing));
+        } else {
+          // Plato no conocido por el sistema
+          unknownMeals.push(meal);
+        }
+      });
+
+      const ingredientsList = Array.from(ingredientsSet).sort();
+      let text = "";
+
+      if (ingredientsList.length > 0) {
+        text += "Ingredientes sugeridos según los platos conocidos:\n";
+        ingredientsList.forEach(ing => {
+          text += `- ${ing}\n`;
+        });
+      } else {
+        text += "No se han detectado platos conocidos para generar ingredientes automáticamente.\n";
+      }
+
+      if (unknownMeals.length > 0) {
+        text += "\nRevisa los ingredientes para estos platos (añádelos manualmente):\n";
+        Array.from(new Set(unknownMeals)).forEach(meal => {
+          text += `- ${meal}\n`;
+        });
+      }
+
+      const shoppingArea = document.getElementById("shoppingList");
+      shoppingArea.value = text;
+    }
+
+    // --- Eventos de botones ---
+    document.getElementById("btnRandom").addEventListener("click", fillRandomMenu);
+    document.getElementById("btnClear").addEventListener("click", () => {
+      clearTable();
+      document.getElementById("shoppingList").value = "";
+    });
+    document.getElementById("btnShopping").addEventListener("click", generateShoppingList);
+  </script>
+</body>
+</html>
